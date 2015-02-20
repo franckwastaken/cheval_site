@@ -4,16 +4,15 @@ class Controller {
 
     protected $db;
 
-    public function getDb()
+    private function getDb()
     {
-        return new PDO('mysql:host=localhost;dbname=cheval_site', 'root', '');
+        return $this->db = DB::getInstance();
+
     }
 
-    protected function model($model)
+    protected function model()
     {
-        require_once '../app/models/' . $model . '.php';
-
-        return new $model($this->getDb());
+        return $this->getDb();
     }
 
     protected function view($view, $data = [])
